@@ -1,5 +1,6 @@
 package com.example.appfood.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.appfood.activities.MainActivity
+import com.example.appfood.activities.MealActivity
 import com.example.appfood.adapters.MealsAdapter
 import com.example.appfood.databinding.FragmentSearchBinding
 import com.example.appfood.viewModel.HomeViewModel
@@ -51,6 +53,17 @@ class SearchFragment : Fragment() {
                 viewModel.searchMeals(searchQuery.toString())
                 //every time the query change will execute this fn
             }
+        }
+        onClickItem()
+    }
+
+    private fun onClickItem() {
+        searchRvAdapter.onClickItem = { favoriteMeal ->
+            val intent = Intent(activity, MealActivity::class.java)
+            intent.putExtra(HomeFragment.MEAL_ID, favoriteMeal.idMeal)
+            intent.putExtra(HomeFragment.MEAL_NAME, favoriteMeal.strMeal)
+            intent.putExtra(HomeFragment.MEAL_THUMB, favoriteMeal.strMealThumb)
+            startActivity(intent)
         }
     }
 
