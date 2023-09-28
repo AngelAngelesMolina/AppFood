@@ -1,5 +1,6 @@
 package com.example.appfood.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appfood.activities.MainActivity
+import com.example.appfood.activities.MealActivity
 import com.example.appfood.adapters.MealsAdapter
 import com.example.appfood.databinding.FragmentFavoritesBinding
 import com.example.appfood.viewModel.HomeViewModel
@@ -42,7 +44,7 @@ class FavoritesFragment : Fragment() {
 
         prepareRv()
         observeFavorites()
-
+        onClickFavoriteMeal()
         val itemTouchHelper = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN, // way we usually scroll our rv
             ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT //the direction we need to take an action
@@ -70,6 +72,17 @@ class FavoritesFragment : Fragment() {
         }
         //Attach itemTouchHelper to our rv
         ItemTouchHelper(itemTouchHelper).attachToRecyclerView(binding.rvFavorites)
+    }
+
+    private fun onClickFavoriteMeal() {
+        mealsAdapter.onClickItem = { favoriteMeal ->
+            val intent = Intent(activity, MealActivity::class.java)
+            intent.putExtra(HomeFragment.MEAL_ID, favoriteMeal.idMeal)
+            intent.putExtra(HomeFragment.MEAL_NAME, favoriteMeal.strMeal)
+            intent.putExtra(HomeFragment.MEAL_THUMB, favoriteMeal.strMealThumb)
+            startActivity(intent)
+        }
+
     }
 
     private fun prepareRv() {
