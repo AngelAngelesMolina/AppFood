@@ -11,10 +11,11 @@ import com.example.appfood.pojo.Meal
 
 class MealsAdapter :
     RecyclerView.Adapter<MealsAdapter.FavoritesMealsAdapterViewHolder>() {
+
     inner class FavoritesMealsAdapterViewHolder(val binding: MealItemBinding) :
         RecyclerView.ViewHolder(binding.root)
-
     //data you wanna show into rv
+    var onClickItem: ((Meal) -> Unit)? = null
     private val diffUtil = object : DiffUtil.ItemCallback<Meal>() {
         override fun areItemsTheSame(oldItem: Meal, newItem: Meal): Boolean {
             return oldItem.idMeal == newItem.idMeal
@@ -42,6 +43,9 @@ class MealsAdapter :
             .load(meal.strMealThumb)
             .into(holder.binding.imgMeal)
         holder.binding.tvMealName.text = meal.strMeal
+        holder.itemView.setOnClickListener {
+            onClickItem!!.invoke(meal)
+        }
     }
 
 }
