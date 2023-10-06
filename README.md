@@ -27,3 +27,8 @@ This is a food app where you can see the ready meals and put them as favorites, 
 - Glide : Catch images and load them in imageView.
  
  ## Screenshots
+![Vista principal](https://github.com/AngelAngelesMolina/AppFood/blob/main/app/homeFragment.png?raw=true)
+  ![Vista miembros](https://github.com/AngelAngelesMolina/AppFood/blob/main/app/FavoritesFragment.png?raw=true)
+  ![Vista miembros](https://github.com/AngelAngelesMolina/AppFood/blob/main/app/categoriesFragment.png?raw=true)
+  ![Vista miembros](https://github.com/AngelAngelesMolina/AppFood/blob/main/app/items_Category.png?raw=true)
+  ![Vista miembros](https://github.com/AngelAngelesMolina/AppFood/blob/main/app/detailMeal.png?raw=true)
